@@ -1,0 +1,488 @@
+/* =========================================
+   1. CSS VARIABLES & GLOBAL RESETS
+   ========================================= */
+:root {
+  --primary-color: #2b2b2b;
+  --accent-color: #d4af37;
+  --bg-color: #fafafa;
+  --text-color: #333333;
+  --light-text: #777777;
+  --font-main: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #f0f0f0;
+  --primary-color: #ffffff;
+  --light-text: #aaaaaa;
+}
+
+body.dark-mode header {
+  background-color: rgba(18, 18, 18, 0.95);
+}
+
+body.dark-mode .project-header {
+  background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+}
+
+body.dark-mode footer {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+body.dark-mode footer h2,
+body.dark-mode footer p,
+body.dark-mode .social-links a {
+  color: #ffffff;
+}
+
+body.dark-mode .portfolio-item,
+body.dark-mode .featured-project {
+  background: #1e1e1e;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.theme-btn {
+  background: none;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 6px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  margin-left: 20px;
+  transition: all 0.3s ease;
+}
+
+.theme-btn:hover {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* =========================================
+   2. NAVIGATION & HEADER
+   ========================================= */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(250, 250, 250, 0.95);
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+nav a {
+  margin-left: 30px;
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--accent-color);
+}
+
+/* =========================================
+   3. GLOBAL BUTTONS & TITLES
+   ========================================= */
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background-color: var(--primary-color);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.btn:hover {
+  background-color: var(--accent-color);
+  transform: translateY(-3px);
+}
+
+section {
+  padding: 100px 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 60px;
+  color: var(--primary-color);
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  width: 60px;
+  height: 3px;
+  background-color: var(--accent-color);
+  display: block;
+  margin: 10px auto 0;
+}
+
+/* =========================================
+   4. HERO SECTION (With Dark Overlay)
+   ========================================= */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
+    url("images/video\ stuff.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hero-content h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: #eeeeee;
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================================
+   5. ABOUT SECTION
+   ========================================= */
+.about-content {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.about-image {
+  flex: 1;
+  background-color: #ddd;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.about-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-text h3 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+/* =========================================
+   6. FEATURED MASTERPIECE SECTION
+   ========================================= */
+.featured-project {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.featured-project:hover {
+  transform: translateY(-5px);
+}
+
+.featured-img {
+  flex: 1.5;
+  height: 400px;
+  background-color: #eee;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+}
+
+.featured-text {
+  flex: 1;
+}
+
+.featured-text h3 {
+  font-size: 2.2rem;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+
+.featured-text p {
+  color: var(--light-text);
+  margin-bottom: 25px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.mini-gallery {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.mini-gallery img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.mini-gallery img:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================
+   7. PORTFOLIO GRID
+   ========================================= */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.portfolio-item {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.portfolio-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-img {
+  width: 100%;
+  height: 250px;
+  background-color: #eee;
+  background-size: cover;
+  background-position: center;
+}
+
+.portfolio-info {
+  padding: 20px;
+}
+
+.portfolio-info h4 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  color: var(--primary-color);
+}
+
+.portfolio-info p {
+  color: var(--light-text);
+  font-size: 0.9rem;
+}
+
+/* =========================================
+   8. INDIVIDUAL PROJECT GALLERY PAGES
+   ========================================= */
+.project-header {
+  text-align: center;
+  padding: 150px 20px 50px;
+
+  background: linear-gradient(135deg, var(--bg-color) 0%, #eaeaea 100%);
+  transition: background 0.3s ease;
+}
+
+.project-header h1 {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+.project-header p {
+  color: var(--light-text);
+  max-width: 800px;
+  margin: 0 auto 30px;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 25px;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.gallery-img:hover {
+  transform: scale(1.02);
+}
+
+/* =========================================
+   9. FOOTER
+   ========================================= */
+footer {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+  text-align: center;
+  padding: 60px 20px;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+footer h2 {
+  margin-bottom: 20px;
+  color: var(--bg-color);
+}
+
+footer p {
+  color: var(--bg-color);
+  opacity: 0.8;
+  margin-bottom: 30px;
+}
+
+.social-links a {
+  color: var(--bg-color);
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: var(--accent-color);
+}
+
+/* =========================================
+   10. MOBILE RESPONSIVENESS
+   ========================================= */
+@media (max-width: 768px) {
+  header {
+    padding: 15px 20px;
+  }
+  nav {
+    display: none;
+  }
+  .about-content {
+    flex-direction: column;
+  }
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  section {
+    padding: 60px 20px;
+  }
+
+  .featured-project {
+    flex-direction: column;
+    padding: 20px;
+  }
+  .featured-img {
+    width: 100%;
+    height: 250px;
+  }
+  .featured-text h3 {
+    font-size: 1.8rem;
+  }
+  .mini-gallery {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .project-header {
+    padding: 120px 20px 40px;
+  }
+  .project-header h1 {
+    font-size: 2.2rem;
+  }
+}

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Title One - Deyan</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <a href="Landing page.html" class="logo">Deyan.</a>
+      <nav>
+        <a href="Landing page.html">Home</a>
+        <a href="Landing page.html">About</a>
+        <a href="Landing page.html">Portfolio</a>
+        <a href="Landing page.html">Contact</a>
+        <button id="theme-toggle" class="theme-btn">🌙 Dark Mode</button>
+      </nav>
+    </header>
+
+    <div class="project-header">
+      <h1>My 3d Projects</h1>
+      <p>
+        A showcase of my 3d projects, mostly work in progress but overtime will
+        be complete.
+      </p>
+      <a href="Landing page.html" class="back-btn">&larr; Back to Portfolio</a>
+    </div>
+
+    <div class="image-gallery">
+      <img src="images/3d1.png" alt="Gallery Image 1" class="gallery-img" />
+      <img src="images/3d2.png" alt="Gallery Image 2" class="gallery-img" />
+      <img src="images/3d3.png" alt="Gallery Image 3" class="gallery-img" />
+      <img src="images/3d4.png" alt="Gallery Image 4" class="gallery-img" />
+    </div>
+    <script>
+      const toggleBtn = document.getElementById("theme-toggle");
+      const body = document.body;
+
+      const currentTheme = localStorage.getItem("theme");
+      if (currentTheme === "dark") {
+        body.classList.add("dark-mode");
+        toggleBtn.innerText = "☀️ Light Mode";
+      }
+      toggleBtn.addEventListener("click", () => {
+        body.classList.toggle("dark-mode");
+        if (body.classList.contains("dark-mode")) {
+          toggleBtn.innerText = "☀️ Light Mode";
+          localStorage.setItem("theme", "dark");
+        } else {
+          toggleBtn.innerText = "🌙 Dark Mode";
+          localStorage.setItem("theme", "light");
+        }
+      });
+    </script>
+  </body>
+</html>

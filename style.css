@@ -242,6 +242,7 @@ section {
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease;
+  margin-bottom: 40px;
 }
 
 .featured-project:hover {
@@ -298,7 +299,7 @@ section {
 }
 
 /* =========================================
-   7. PORTFOLIO GRID
+   7. PORTFOLIO GRID & WIP SECTION
    ========================================= */
 .portfolio-grid {
   display: grid;
@@ -328,6 +329,7 @@ section {
   background-color: #eee;
   background-size: cover;
   background-position: center;
+  position: relative;
 }
 
 .portfolio-info {
@@ -343,6 +345,50 @@ section {
 .portfolio-info p {
   color: var(--light-text);
   font-size: 0.9rem;
+}
+
+.wip-card {
+  position: relative;
+}
+
+.wip-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: var(--accent-color);
+  color: #121212;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.progress-bar-container {
+  width: 100%;
+  background-color: #e0e0e0;
+  height: 8px;
+  border-radius: 4px;
+  margin: 15px 0 5px 0;
+  overflow: hidden;
+}
+
+body.dark-mode .progress-bar-container {
+  background-color: #333;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--accent-color);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.progress-text {
+  font-size: 0.8rem;
+  color: var(--light-text);
+  font-weight: 500;
 }
 
 /* =========================================
@@ -404,6 +450,7 @@ section {
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .gallery-img:hover {
@@ -488,4 +535,83 @@ footer p {
   .project-header h1 {
     font-size: 2.2rem;
   }
+}
+
+/* =========================================
+   11. FULLSCREEN REDDIT-STYLE LIGHTBOX
+   ========================================= */
+body.modal-open {
+  overflow: hidden !important;
+}
+
+.modal {
+  display: none;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(8px);
+  z-index: 99999 !important;
+}
+
+.modal-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.modal-content {
+  max-width: 90vw;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+  animation: redditZoom 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes redditZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-close {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  color: #ffffff;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 100000;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
 }

@@ -7,11 +7,26 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- Lightbox Modal Overlay (Direct child of <body> to avoid layout restrictions) -->
+    <div id="image-modal" class="modal">
+      <span class="modal-close" id="modal-close">&times;</span>
+      <div class="modal-wrapper">
+        <img
+          class="modal-content"
+          id="modal-img"
+          src=""
+          alt="Enlarged preview"
+        />
+      </div>
+    </div>
+
     <header>
       <a href="#" class="logo">Eli</a>
       <nav>
         <a href="#home">Home</a>
         <a href="#about">About</a>
+        <a href="#best-work">Featured</a>
+        <a href="#wip-projects">WIP</a>
         <a href="#portfolio">Portfolio</a>
         <a href="#contact">Contact</a>
         <button id="theme-toggle" class="theme-btn">🌙 Dark Mode</button>
@@ -70,6 +85,7 @@
           </div>
         </div>
       </div>
+
       <div class="featured-project">
         <div
           class="featured-img"
@@ -90,10 +106,11 @@
           </div>
         </div>
       </div>
+
       <div class="featured-project">
         <div
           class="featured-img"
-          style="background-image: url(images/bus\ scene\ Compressed.gif)"
+          style="background-image: url(images/bus%20scene%20Compressed.gif)"
         ></div>
 
         <div class="featured-text">
@@ -111,6 +128,57 @@
       </div>
     </section>
 
+    <!-- Work In Progress Projects Section -->
+    <section id="wip-projects">
+      <h2 class="section-title">Work In Progress</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item wip-card">
+          <div
+            class="portfolio-img"
+            style="background-image: url(&quot;images/walk_cycle.gif&quot;)"
+          >
+            <span class="wip-badge">Early concept</span>
+          </div>
+          <div class="portfolio-info">
+            <h4>A lone walk</h4>
+            <p>
+              Stylized 3D short film about a lone soldier in the far future
+              going awol after commiting atrocious crimes
+            </p>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 75%"></div>
+            </div>
+            <span class="progress-text">Stage: Shading & Rigging (75%)</span>
+          </div>
+        </div>
+
+        <div class="portfolio-item wip-card">
+          <div
+            class="portfolio-img"
+            style="background-image: url(&quot;images/capstone_WIP.png&quot;)"
+          >
+            <span class="wip-badge">In Progress</span>
+          </div>
+          <div class="portfolio-info">
+            <h4>
+              Illustrating The Immune System Response To influenza for Health
+              Awareness
+            </h4>
+            <p>
+              Our Stylized 3d animation about the body's immune system for
+              health awareness
+            </p>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 40%"></div>
+            </div>
+            <span class="progress-text"
+              >Stage: shading, rigging and weight painting (40%)</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="portfolio">
       <div class="project-header">
         <h1>The rest of my 3d projects</h1>
@@ -122,10 +190,11 @@
         <img src="images/3d4.png" alt="Gallery Image 4" class="gallery-img" />
       </div>
     </section>
+
     <footer id="contact">
       <h2>Got a project? come and contact me :D</h2>
-      <p>I'm currently available for freelance work. Send me a message!</p>
-      <a href="elijah.blake.deyan@gmail.com" class="btn">Email Me</a>
+      <p>I'm currently available for freelance work.</p>
+      <a href="mailto:elijah.blake.deyan@gmail.com" class="btn">Email Me</a>
 
       <div class="social-links" style="margin-top: 40px">
         <a href="https://www.linkedin.com/in/elijah-blake-l-deyan-ba04103aa/"
@@ -134,28 +203,66 @@
         <a href="https://www.facebook.com/elijahdeyan">Facebook</a>
       </div>
     </footer>
+
     <script>
       const toggleBtn = document.getElementById("theme-toggle");
       const body = document.body;
 
-      // 1. Check if they chose dark mode previously
+      // Dark Mode Persistence
       const currentTheme = localStorage.getItem("theme");
       if (currentTheme === "dark") {
         body.classList.add("dark-mode");
         toggleBtn.innerText = "☀️ Light Mode";
       }
 
-      // 2. Listen for a click on the button
       toggleBtn.addEventListener("click", () => {
-        body.classList.toggle("dark-mode"); // Turns dark mode on or off
-
-        // 3. Update the text and save their choice
+        body.classList.toggle("dark-mode");
         if (body.classList.contains("dark-mode")) {
           toggleBtn.innerText = "☀️ Light Mode";
           localStorage.setItem("theme", "dark");
         } else {
           toggleBtn.innerText = "🌙 Dark Mode";
           localStorage.setItem("theme", "light");
+        }
+      });
+
+      // Fullscreen Image Modal Logic
+      const modal = document.getElementById("image-modal");
+      const modalImg = document.getElementById("modal-img");
+      const closeModalBtn = document.getElementById("modal-close");
+
+      // Attach click events to all gallery images
+      document
+        .querySelectorAll(".mini-gallery img, .gallery-img")
+        .forEach((img) => {
+          img.addEventListener("click", (e) => {
+            e.stopPropagation();
+            modalImg.src = img.src;
+            modal.style.display = "block";
+            document.body.classList.add("modal-open");
+          });
+        });
+
+      function closeModal() {
+        modal.style.display = "none";
+        modalImg.src = "";
+        document.body.classList.remove("modal-open");
+      }
+
+      closeModalBtn.addEventListener("click", closeModal);
+
+      modal.addEventListener("click", (e) => {
+        if (
+          e.target === modal ||
+          e.target.classList.contains("modal-wrapper")
+        ) {
+          closeModal();
+        }
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.style.display === "block") {
+          closeModal();
         }
       });
     </script>
